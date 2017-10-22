@@ -26,8 +26,12 @@ app.get('/JavaScript', (req, res) => {
 })
 
 app.post('/JavaScript', (req, res) => {
+
     let message = new Message({
-        msg: req.body.msg
+        msg: req.body.msg,
+        date: req.body.date,
+        response: req.body.response
+
     });
     message.save().then((doc) => {
         res.status(200).send(doc);
