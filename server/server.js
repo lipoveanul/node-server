@@ -1,5 +1,6 @@
 const express = require('express');
 const BodyParser = require('body-parser');
+const _ = require('lodash');
 
 const {mongoose} = require('./db/mongoose');
 const {Message} = require('./models/Message');
@@ -54,6 +55,25 @@ app.delete('/JavaScript/:id',(req, res) => {
     }).catch((err) => {
         res.status(400).send();
   });
+});
+
+app.patch('/JavaScript/:id', (req, res) => {
+    let id = req.body.id;
+    let body = _.pick(req.body, ['msg', 'response']);
+
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    }
+    Message.findByIdAndUpdate(id, {$set: body}, {new: true})
+        .then((mes) => {
+            if(!mes) {
+                return res.status(404).send();
+            }
+            res.status(200).send({mes});
+        }).catch((err) => {
+            res.status(400).send();
+        })
+
 });
 
 
