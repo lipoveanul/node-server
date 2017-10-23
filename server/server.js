@@ -58,21 +58,20 @@ app.delete('/JavaScript/:id',(req, res) => {
 });
 
 app.patch('/JavaScript/:id', (req, res) => {
-    let id = req.body.id;
+    let id = req.params.id;
     let body = _.pick(req.body, ['msg', 'response']);
 
     if (!ObjectID.isValid(id)) {
-        return res.status(404).send();
+        return res.status(404).send('Not a valid id');
     }
-    Message.findByIdAndUpdate(id, {$set: body}, {new: true})
-        .then((mes) => {
+    Message.findByIdAndUpdate(id, {$set: body}, {new: true}).then((mes) => {
             if(!mes) {
-                return res.status(404).send();
+                return res.status(404).send('Empty value');
             }
             res.status(200).send({mes});
         }).catch((err) => {
             res.status(400).send();
-        })
+        });
 
 });
 
