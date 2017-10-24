@@ -9,6 +9,9 @@ let Message = mongoose.model('Message', {
         type: Date
     },
     response: {
+        type: [String]
+    },
+    topic: {
         type: String
     }
 });
