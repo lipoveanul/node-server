@@ -17,10 +17,12 @@ let User = mongoose.model('User', {
         type: String
     },
     status: {
-        type: Number
+        type: Number,
+        default: 0
     },
     description: {
-        type: String
+        type: String,
+        default: 'No description'
     }
 });
 

@@ -117,7 +117,7 @@ app.delete('/users/:id',(req, res) => {
 
 app.patch('/users/:id', (req, res) => {
     let id = req.params.id;
-    let body = _.pick(req.body, ['nickname', 'email', 'password', 'avatar']);
+    let body = _.pick(req.body, ['nickname', 'email', 'password', 'avatar','description','status']);
 
     if (!ObjectID.isValid(id)) {
         return res.status(404).send('Not a valid id');
