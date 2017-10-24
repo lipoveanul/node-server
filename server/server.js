@@ -33,7 +33,8 @@ app.post('/messages', (req, res) => {
     let message = new Message({
         msg: req.body.msg,
         date: req.body.date,
-        response: req.body.response
+        response: req.body.response,
+        topic: req.body.topic
 
     });
     message.save().then((doc) => {
@@ -90,7 +91,10 @@ app.post('/users', (req, res) => {
     let user = new User({
         nickname: req.body.nickname,
         email: req.body.email,
-        avatar: req.body.avatar
+        avatar: req.body.avatar,
+        password: req.body.password,
+        description: req.body.description,
+        status: req.body.status
 
     });
     user.save().then((doc) => {
