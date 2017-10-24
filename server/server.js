@@ -122,7 +122,7 @@ app.patch('/users/:id', (req, res) => {
     if (!ObjectID.isValid(id)) {
         return res.status(404).send('Not a valid id');
     }
-    Message.findByIdAndUpdate(id, {$set: body}, {new: true}).then((mes) => {
+    User.findByIdAndUpdate(id, {$set: body}, {new: true}).then((mes) => {
             if(!mes) {
                 return res.status(404).send('Empty value');
             }
